@@ -13,15 +13,16 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import {NavLink} from "react-router-dom";
 import {useAuth} from "../../context/FakeAuth";
+import {useTheme} from "../../context/Theme";
 
 const pages = ['Category', 'Contact'];
 
 
-export default function ClientNavBar() {
+export default function ShopNavBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
-    const {user, isAuthenticated, logout, login, role} = useAuth()
-
+    const {isAuthenticated, logout, role} = useAuth()
+    const {primary, titreSite} = useTheme()
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -33,27 +34,28 @@ export default function ClientNavBar() {
 
 
     return (
-        <AppBar position="static" style={{backgroundColor: "rgb(188, 140, 212"}}>
+        <AppBar position="static" style={{backgroundColor: `${primary}`}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
-                        sx={{
-                            mr: 2,
-                            display: {xs: 'none', md: 'flex'},
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        ShopNow
-                    </Typography>
+                    <NavLink className="navlink" to="/" >
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            sx={{
+                                mr: 2,
+                                display: {xs: 'none', md: 'flex'},
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: `${titreSite}`,
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Click & Everything
+                        </Typography>
+                    </NavLink>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
@@ -96,7 +98,6 @@ export default function ClientNavBar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="/"
                         sx={{
                             mr: 2,
                             display: {xs: 'flex', md: 'none'},
@@ -108,7 +109,7 @@ export default function ClientNavBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Nom Client Shop
+                        JE SAIS PAS OU EST CE TEXT
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((page) => (

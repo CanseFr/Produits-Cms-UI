@@ -1,7 +1,10 @@
-export default function StockHome(){
+import AdminNavBar from "../../../../base/admin-navbar/AdminNavBar";
+
+export default function AdminStockHome(){
     return(
         <>
-        Vu sur la gestion des stock sous forme de tableau
+            <AdminNavBar/>
+            Vu sur la gestion des stock sous forme de tableau
         </>
     )
 }
