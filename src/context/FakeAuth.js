@@ -1,15 +1,17 @@
 import {createContext, useContext, useReducer} from "react";
+import {useTheme} from "./Theme";
 
 const AuthContext = createContext()
 
-const initialState= {
+
+const initialState = {
     user: null,
     isAuthenticated: false,
     role: null,
 }
 
-function reducer(state, action){
-    switch (action.type){
+function reducer(state, action) {
+    switch (action.type) {
         case 'login/admin':
             return {...state, user: null, isAuthenticated: true, role: 'admin'}
         case 'login/user':
@@ -37,25 +39,27 @@ const FAKE_ADMIN = {
     role: 'admin'
 };
 
-function AuthProvider({children}){
+function AuthProvider({children}) {
+
+    const {user: userFromEnv} = useTheme()
 
     const [{user, isAuthenticated, role}, dispatch] = useReducer(reducer, initialState)
 
-    function login(email, password){
+    function login(email, password) {
         if (email === FAKE_USER.email && password === FAKE_USER.password)
             dispatch({type: 'login/user', payload: FAKE_USER})
-        if (email === FAKE_ADMIN.email && password === FAKE_ADMIN.password)
+        if (email === userFromEnv && password === FAKE_ADMIN.password)
             dispatch({type: 'login/admin', payload: FAKE_ADMIN})
     }
 
-    function logout(){
+    function logout() {
         dispatch({type: 'logout'})
     }
 
     return <AuthContext.Provider value={{user, isAuthenticated, logout, login, role}}>{children}</AuthContext.Provider>
 }
 
-function useAuth(){
+function useAuth() {
     const context = useContext(AuthContext)
     if (context === undefined) throw new Error("AuthContext was user outside AuthProvider")
     return context

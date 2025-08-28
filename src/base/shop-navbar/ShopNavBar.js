@@ -18,11 +18,12 @@ import {useTheme} from "../../context/Theme";
 const pages = ['Category', 'Contact'];
 
 
+
 export default function ShopNavBar() {
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const {isAuthenticated, logout, role} = useAuth()
-    const {primary, titreSite} = useTheme()
+    const {primary, secondary,titreSite} = useTheme()
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -49,11 +50,11 @@ export default function ShopNavBar() {
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: `${titreSite}`,
+                                color: `${secondary}`,
                                 textDecoration: 'none',
                             }}
                         >
-                            Click & Everything
+                            {titreSite}
                         </Typography>
                     </NavLink>
 
@@ -109,7 +110,7 @@ export default function ShopNavBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        JE SAIS PAS OU EST CE TEXT
+                        {titreSite}
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((page) => (
@@ -160,8 +161,6 @@ export default function ShopNavBar() {
                                 </Button>
                             </>
                     )}
-
-
                 </Box>
             </Toolbar>
         </Container>

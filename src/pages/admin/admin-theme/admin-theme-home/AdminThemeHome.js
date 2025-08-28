@@ -7,7 +7,7 @@ import {useTheme} from "../../../../context/Theme";
 
 export default function AdminThemeHome(){
 
-    const {primary, setPrimary,titreSite, setCouleurTitreSite} = useTheme()
+    const {primary, setPrimary,secondary, setSecondary} = useTheme()
 
     return(
         <>
@@ -19,13 +19,13 @@ export default function AdminThemeHome(){
                         <Typography>Couleur Primaire : </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Compact color={primary} onChange={(color) => {setPrimary(color.hex);}}/>
+                        <Compact color={ primary} onChange={(color) => {setPrimary(color.hex);}}/>
                     </Grid>
                     <Grid  item xs={6}>
                         <Typography>Couleur titre du site : </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Compact color={titreSite} onChange={(color) => {setCouleurTitreSite(color.hex);}}/>
+                        <Compact color={secondary} onChange={(color) => {setSecondary(color.hex);}}/>
                     </Grid>
                 </Grid>
             </Container>

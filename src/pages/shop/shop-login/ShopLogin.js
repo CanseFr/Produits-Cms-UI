@@ -6,10 +6,12 @@ import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import {useAuth} from "../../../context/FakeAuth";
 import {useNavigate} from "react-router-dom";
+import {useTheme} from "../../../context/Theme";
 
 export default function ShopLogin(){
+    const {user} = useTheme()
 
-    const[email, setEmail] = useState("admin@admin.com")
+    const[email, setEmail] = useState(user)
     const[password, setPassword] = useState("admin")
 
     const {login, isAuthenticated} = useAuth()

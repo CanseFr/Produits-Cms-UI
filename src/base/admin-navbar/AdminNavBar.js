@@ -21,7 +21,7 @@ const pages = ['Theme', 'Stock', 'Client'];
 export default function AdminNavBar() {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const {logout} = useAuth()
-    const {primary, titreSite} = useTheme()
+    const {primary, secondary} = useTheme()
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -47,7 +47,7 @@ export default function AdminNavBar() {
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: `${titreSite}`,
+                                color: `${secondary}`,
                                 textDecoration: 'none',
                             }}
                         >
